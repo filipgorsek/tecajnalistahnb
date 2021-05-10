@@ -1,16 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.TecajnaListaHNB" parent="Theme.MaterialComponents.Light">
+
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorPrimaryVariant">@color/light_blue_primary_dark</item>
+        <item name="colorPrimary">@color/light_gray</item>
+        <item name="colorPrimaryVariant">@color/light_gray_primary_dark</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/light_blue_primary_light</item>
-        <item name="colorSecondaryVariant">@color/light_blue_primary_dark</item>
+        <item name="colorSecondary">@color/light_gray_primary_light</item>
+        <item name="colorSecondaryVariant">@color/light_gray_primary_dark</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

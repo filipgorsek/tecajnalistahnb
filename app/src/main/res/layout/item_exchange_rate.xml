@@ -9,13 +9,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@android:color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/open_sans_regular"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/ivFlag"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Poljska" />
@@ -53,8 +53,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/open_sans_regular"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvCountry"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="(PLN = 1)" />
@@ -65,11 +66,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:textSize="18sp"
+                android:fontFamily="@font/open_sans_light"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/ivFlag"
                 app:layout_constraintTop_toBottomOf="@id/tvCountry"
-                tools:text="Kupovni: 1,6399159" />
+                tools:text="Kupovni tečaj: 1,6399159" />
 
             <TextView
                 android:id="@+id/tvMiddleRate"
@@ -77,11 +78,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:textSize="18sp"
+                android:fontFamily="@font/open_sans_light"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/ivFlag"
                 app:layout_constraintTop_toBottomOf="@id/tvBuyingRate"
-                tools:text="Srednji: 1,644091" />
+                tools:text="Srednji tečaj: 1,644091" />
 
             <TextView
                 android:id="@+id/tvSellingRate"
@@ -90,12 +91,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:textSize="18sp"
+                android:fontFamily="@font/open_sans_light"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivFlag"
                 app:layout_constraintTop_toBottomOf="@id/tvMiddleRate"
-                tools:text="Prodajni: 1,1,649023" />
+                tools:text="Prodajni tečaj: 1,1,649023" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

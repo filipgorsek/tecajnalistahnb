@@ -1,11 +1,11 @@
 package com.filip.tecajnalistahnb.api
 
-import com.filip.tecajnalistahnb.data.response.CurrencyResponse
+import com.filip.tecajnalistahnb.data.model.ExchangeRateModel
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("")
-    fun getCurrency() : Call<CurrencyResponse>
+    @GET("tecajn/v1/")
+    fun getCurrency() : Call<MutableList<ExchangeRateModel>>
 }

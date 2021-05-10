@@ -2,15 +2,15 @@ package com.filip.tecajnalistahnb.interactor
 
 import com.filip.tecajnalistahnb.api.ApiService
 import com.filip.tecajnalistahnb.common.*
-import com.filip.tecajnalistahnb.data.response.CurrencyResponse
-import org.koin.core.KoinComponent
+import com.filip.tecajnalistahnb.data.model.ExchangeRateModel
+import org.koin.core.component.KoinComponent
 
 const val ERROR_CODE = 404
 
 class BackendInteractor(private val apiService: ApiService) : BackendInteractorInterface,
     KoinComponent {
 
-    override suspend fun getExchangeRate(): Result<CurrencyResponse> {
+    override suspend fun getExchangeRate(): Result<MutableList<ExchangeRateModel>> {
         apiService.getCurrency()
             .awaitResult()
             .onSuccess { return Success(it) }

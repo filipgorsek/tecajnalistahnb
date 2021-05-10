@@ -1,15 +1,45 @@
 package com.filip.tecajnalistahnb.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import com.filip.tecajnalistahnb.R
+import android.view.LayoutInflater
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.filip.tecajnalistahnb.data.model.ExchangeRateModel
+import com.filip.tecajnalistahnb.databinding.ActivityMainBinding
+import com.filip.tecajnalistahnb.extensions.subscribe
+import com.filip.tecajnalistahnb.ui.base.BaseActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val moviesViewModel by viewModel<MoviesViewModel>()
+    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
+
+    private val currencyViewModel by viewModel<CurrencyViewModel>()
+    private val adapter by lazy { CurrencyListAdapter() }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        initUI()
+        currencyViewModel.checkDbData()
+        subscribeData()
+    }
+
+    private fun initUI() {
+        binding.run {
+            currencyList.layoutManager = LinearLayoutManager(this@MainActivity)
+            currencyList.adapter = adapter
+        }
+    }
+
+    private fun subscribeData() {
+        currencyViewModel.currencyExchangeLiveData.subscribe(this, ::showData)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showData(currencyList: MutableList<ExchangeRateModel>) {
+        adapter.setData(currencyList)
+        binding.tvDate.text = """Datum: ${currencyList[0].date}"""
     }
 }

@@ -1,9 +1,12 @@
 package com.filip.tecajnalistahnb.di
 
 import android.content.Context
+import androidx.room.Room
 import com.filip.tecajnalistahnb.api.ApiService
 import com.filip.tecajnalistahnb.common.BASE_BACKEND_URL
 import com.filip.tecajnalistahnb.coroutines.CoroutineContextProviderImpl
+import com.filip.tecajnalistahnb.db.ExchangeRateDatabase
+import com.filip.tecajnalistahnb.db.ExchangeRateDatabaseHelperImpl
 import com.filip.tecajnalistahnb.interactor.BackendInteractor
 import com.filip.tecajnalistahnb.interactor.BackendInteractorInterface
 import com.filip.tecajnalistahnb.ui.CurrencyViewModel
@@ -11,7 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Converter
@@ -25,9 +28,13 @@ private const val BACKEND_RETROFIT_TECAJNA_LISTA = "tecajnaListaHnbBackend"
 
 val appModule = module {
     single { androidContext().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE) }
-//    single<PrefsHelperInterfae> { PrefsHelper(get()) }
 }
 
+val dbModule = module{
+    single { Room.databaseBuilder(get(), ExchangeRateDatabase::class.java, "exchange_rate_database").build() }
+    single { get<ExchangeRateDatabase>().exchangeRateDao() }
+    single { ExchangeRateDatabaseHelperImpl(get()) }
+}
 val networkingModule = module {
 
     single { GsonConverterFactory.create() as Converter.Factory }
@@ -67,12 +74,16 @@ val coroutineModule = module {
 }
 
 val viewModule = module {
-    viewModel { CurrencyViewModel(get(),get()) }
+    viewModel {
+        CurrencyViewModel(get(), get(), get())
+    }
 }
 
 val modules = listOf(
     appModule,
+    dbModule,
     coroutineModule,
     networkingModule,
     interactionModule,
-    viewModule)
+    viewModule
+)

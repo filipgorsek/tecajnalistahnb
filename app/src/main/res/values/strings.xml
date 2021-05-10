@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">Tecajna Lista HNB</string>
-    <string name="no_internet_try_again">NO INTERNET! TRY AGAIN</string>
-
+    <string name="app_name">Tečajna Lista HNB</string>
 </resources>

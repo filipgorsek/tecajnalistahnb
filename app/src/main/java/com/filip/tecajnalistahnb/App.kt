@@ -18,7 +18,7 @@ class App: Application() {
         instance = this
         startKoin {
             androidContext(this@App)
-            if (BuildConfig.DEBUG) androidLogger(Level.DEBUG)
+            if (BuildConfig.DEBUG) androidLogger(Level.NONE)
             modules(com.filip.tecajnalistahnb.di.modules)
         }
     }
